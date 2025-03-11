@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60" height="40" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+    <!-- Яма -->
+    <ellipse cx="30" cy="20" rx="28" ry="18" fill="#34495e"/>
+    <!-- Тени -->
+    <path d="M10,20 Q30,35 50,20" stroke="#2c3e50" stroke-width="4" fill="none"/>
+    <path d="M15,15 Q30,30 45,15" stroke="#2c3e50" stroke-width="3" fill="none"/>
+</svg> 

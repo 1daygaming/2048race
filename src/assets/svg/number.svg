@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    <!-- Круг -->
+    <circle cx="20" cy="20" r="18" fill="#2ecc71"/>
+    <!-- Внутренний круг для текста -->
+    <circle cx="20" cy="20" r="15" fill="#27ae60"/>
+</svg> 

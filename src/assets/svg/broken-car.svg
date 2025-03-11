@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60" height="40" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+    <!-- Кузов -->
+    <rect x="5" y="15" width="50" height="15" fill="#e74c3c"/>
+    <!-- Кабина -->
+    <rect x="40" y="5" width="15" height="15" fill="#c0392b"/>
+    <!-- Колеса -->
+    <circle cx="15" cy="32" r="6" fill="#2c3e50" transform="rotate(15)"/>
+    <circle cx="45" cy="32" r="6" fill="#2c3e50" transform="rotate(-10)"/>
+    <!-- Дым -->
+    <circle cx="10" cy="10" r="3" fill="#95a5a6" opacity="0.6"/>
+    <circle cx="15" cy="7" r="2" fill="#95a5a6" opacity="0.4"/>
+    <circle cx="18" cy="5" r="1" fill="#95a5a6" opacity="0.2"/>
+</svg> 
