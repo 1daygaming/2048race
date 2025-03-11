@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Number Truck</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #34495e;
+        touch-action: none;
+      }
+      canvas {
+        background-color: #f0f0f0;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-mHTP3FKP.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DmImJiuI.css">
+  </head>
+  <body>
+    <!-- Стартовый экран -->
+    <div class="start-screen" id="startScreen">
+        <img id="startScreenBackground" alt="background">
+        <div class="title-container">
+            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDYwMCAxMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8IS0tINCk0L7QvdC+0LLRi9C5INGB0LvQvtC5INC00LvRjyDQvdC10L7QvdC+0LLQvtCz0L4g0YHQstC10YfQtdC90LjRjyAtLT4KICAgIDxkZWZzPgogICAgICAgIDxmaWx0ZXIgaWQ9Im5lb25HbG93IiB4PSItNTAlIiB5PSItNTAlIiB3aWR0aD0iMjAwJSIgaGVpZ2h0PSIyMDAlIj4KICAgICAgICAgICAgPGZlR2F1c3NpYW5CbHVyIGluPSJTb3VyY2VHcmFwaGljIiBzdGREZXZpYXRpb249IjQiIHJlc3VsdD0iYmx1ciIvPgogICAgICAgICAgICA8ZmVDb2xvck1hdHJpeCBpbj0iYmx1ciIgdHlwZT0ibWF0cml4IiB2YWx1ZXM9IgogICAgICAgICAgICAgICAgMCAwIDAgMCAwCiAgICAgICAgICAgICAgICAwIDAuOTUgMSAwIDAKICAgICAgICAgICAgICAgIDEgMCAxIDAgMAogICAgICAgICAgICAgICAgMCAwIDAgMSAwCiAgICAgICAgICAgICIvPgogICAgICAgIDwvZmlsdGVyPgogICAgPC9kZWZzPgoKICAgIDwhLS0g0KLQtdC60YHRgiDRgSDQvdC10L7QvdC+0LLRi9C8INGN0YTRhNC10LrRgtC+0LwgLS0+CiAgICA8ZyBmaWx0ZXI9InVybCgjbmVvbkdsb3cpIj4KICAgICAgICA8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgCiAgICAgICAgICAgICAgZm9udC1mYW1pbHk9IidQcmVzcyBTdGFydCAyUCcsIG1vbm9zcGFjZSIgZm9udC1zaXplPSI0OCIgZmlsbD0iIzAwZjNmZiI+CiAgICAgICAgICAgIE5VTUJFUiBUUlVDSwogICAgICAgIDwvdGV4dD4KICAgIDwvZz4KCiAgICA8IS0tINCe0YHQvdC+0LLQvdC+0Lkg0YLQtdC60YHRgiAtLT4KICAgIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiAKICAgICAgICAgIGZvbnQtZmFtaWx5PSInUHJlc3MgU3RhcnQgMlAnLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiNmZmZmZmYiPgogICAgICAgIE5VTUJFUiBUUlVDSwogICAgPC90ZXh0Pgo8L3N2Zz4g" alt="Number Truck" width="400">
+        </div>
+        <div class="button-container">
+            <button class="game-button" id="rulesButton">Rules</button>
+            <button class="game-button" id="startButton">Start</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно с правилами -->
+    <div class="modal" id="rulesModal">
+        <div class="modal-content">
+            <button class="close-button" id="closeRules">×</button>
+            <h2>How to Play</h2>
+            <p>1. Control your truck using LEFT and RIGHT arrow keys</p>
+            <p>2. Collect matching numbers to double your score</p>
+            <p>3. Avoid wrong numbers and obstacles</p>
+            <p>4. The bigger your number, the faster objects will fall</p>
+            <p>5. Try to get the highest number possible!</p>
+            <p>Tip: Be careful! Hitting obstacles will divide your number!</p>
+        </div>
+    </div>
+
+    <!-- Игровой контейнер -->
+    <div class="game-container">
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+  </body>
+</html>
