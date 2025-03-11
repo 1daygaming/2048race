@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="60" height="40" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
-    <!-- Кузов -->
-    <rect x="5" y="15" width="50" height="15" fill="#e74c3c"/>
-    <!-- Кабина -->
-    <rect x="40" y="5" width="15" height="15" fill="#c0392b"/>
-    <!-- Колеса -->
-    <circle cx="15" cy="32" r="6" fill="#2c3e50" transform="rotate(15)"/>
-    <circle cx="45" cy="32" r="6" fill="#2c3e50" transform="rotate(-10)"/>
-    <!-- Дым -->
-    <circle cx="10" cy="10" r="3" fill="#95a5a6" opacity="0.6"/>
-    <circle cx="15" cy="7" r="2" fill="#95a5a6" opacity="0.4"/>
-    <circle cx="18" cy="5" r="1" fill="#95a5a6" opacity="0.2"/>
+<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    <!-- Пиксельная сломанная машина -->
+    <g transform="scale(4)">
+        <!-- Основной корпус -->
+        <rect x="2" y="3" width="6" height="4" fill="#e74c3c"/>
+        
+        <!-- Детали повреждений -->
+        <rect x="2" y="3" width="2" height="2" fill="#c0392b"/>
+        <rect x="6" y="4" width="2" height="2" fill="#c0392b"/>
+        
+        <!-- Разбитые окна -->
+        <rect x="3" y="4" width="1" height="1" fill="#95a5a6"/>
+        <rect x="5" y="4" width="1" height="1" fill="#95a5a6"/>
+        
+        <!-- Колеса -->
+        <rect x="2" y="7" width="1" height="1" fill="#2c3e50"/>
+        <rect x="6" y="7" width="1" height="1" fill="#2c3e50"/>
+        
+        <!-- Дым -->
+        <rect x="4" y="2" width="1" height="1" fill="#7f8c8d"/>
+        <rect x="5" y="1" width="1" height="1" fill="#7f8c8d"/>
+        <rect x="6" y="2" width="1" height="1" fill="#7f8c8d"/>
+    </g>
 </svg> 

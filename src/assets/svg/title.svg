@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="120" viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg">
+    <!-- Фоновый слой для неонового свечения -->
+    <defs>
+        <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+            <feColorMatrix in="blur" type="matrix" values="
+                0 0 0 0 0
+                0 0.95 1 0 0
+                1 0 1 0 0
+                0 0 0 1 0
+            "/>
+        </filter>
+    </defs>
+
+    <!-- Текст с неоновым эффектом -->
+    <g filter="url(#neonGlow)">
+        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" 
+              font-family="'Press Start 2P', monospace" font-size="48" fill="#00f3ff">
+            NUMBER TRUCK
+        </text>
+    </g>
+
+    <!-- Основной текст -->
+    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" 
+          font-family="'Press Start 2P', monospace" font-size="48" fill="#ffffff">
+        NUMBER TRUCK
+    </text>
+</svg> 

@@ -1,6 +1,20 @@
 import { GameObject } from '../core/GameObject';
 import { AssetLoader } from '../core/AssetLoader';
-import { CANVAS_WIDTH, CANVAS_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_SPEED, PLAYER_COLOR } from '../utils/constants';
+import { 
+    CANVAS_WIDTH, 
+    CANVAS_HEIGHT, 
+    PLAYER_WIDTH, 
+    PLAYER_HEIGHT, 
+    PLAYER_SPEED,
+    PLAYER_COLOR,
+    DEBUG_MODE,
+    DEBUG_COLORS,
+    TRUCK_WIDTH,
+    TRUCK_HEIGHT,
+    TRAILER_WIDTH,
+    TRAILER_HEIGHT,
+    TRAILER_GAP
+} from '../utils/constants';
 
 export class Player extends GameObject {
     private speed: number;
@@ -9,11 +23,11 @@ export class Player extends GameObject {
 
     constructor() {
         const x = (CANVAS_WIDTH - PLAYER_WIDTH) / 2;
-        const y = CANVAS_HEIGHT - PLAYER_HEIGHT - 20 - 45;
+        const y = CANVAS_HEIGHT - PLAYER_HEIGHT - 20;
         super(x, y, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_COLOR);
         
         this.speed = PLAYER_SPEED;
-        this.currentNumber = 2; // Starting number
+        this.currentNumber = 2;
         this.moving = { left: false, right: false };
         
         this.setupControls();
@@ -69,30 +83,48 @@ export class Player extends GameObject {
         const trailerImage = AssetLoader.getImage('trailer');
         
         if (truckImage && trailerImage) {
-            // Сначала рисуем машину
-            ctx.drawImage(truckImage, this.x, this.y, this.width, this.height);
+            // Рисуем машину, выравнивая её по левому краю хитбокса
+            ctx.drawImage(truckImage, this.x, this.y, TRUCK_WIDTH, TRUCK_HEIGHT);
             
-            // Размеры прицепа
-            const trailerWidth = 30;
-            const trailerHeight = 40;
-            
-            // Центрируем прицеп под машиной
-            const trailerX = this.x + (this.width - trailerWidth) / 2;
-            const trailerY = this.y + this.height + 5;
+            // Центрируем прицеп относительно машины
+            const trailerX = this.x + (TRUCK_WIDTH - TRAILER_WIDTH) / 2;
+            const trailerY = this.y + TRUCK_HEIGHT + TRAILER_GAP;
             
             // Рисуем прицеп
-            ctx.drawImage(trailerImage, trailerX, trailerY, trailerWidth, trailerHeight);
+            ctx.drawImage(trailerImage, trailerX, trailerY, TRAILER_WIDTH, TRAILER_HEIGHT);
             
             // Рисуем число в прицепе
             ctx.fillStyle = 'white';
-            ctx.font = '20px Arial';
+            ctx.font = '16px "Press Start 2P"';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(
                 this.currentNumber.toString(),
-                trailerX + trailerWidth / 2,
-                trailerY + trailerHeight / 2
+                trailerX + TRAILER_WIDTH / 2,
+                trailerY + TRAILER_HEIGHT / 2
             );
+
+            // Отрисовка хитбоксов в отладочном режиме
+            if (DEBUG_MODE) {
+                // Хитбокс всего объекта
+                this.drawHitbox(ctx, DEBUG_COLORS.PLAYER_HITBOX);
+                
+                // Хитбокс машины
+                ctx.save();
+                ctx.strokeStyle = DEBUG_COLORS.HITBOX;
+                ctx.lineWidth = 2;
+                ctx.setLineDash([5, 5]);
+                ctx.strokeRect(this.x, this.y, TRUCK_WIDTH, TRUCK_HEIGHT);
+                ctx.restore();
+                
+                // Хитбокс прицепа
+                ctx.save();
+                ctx.strokeStyle = DEBUG_COLORS.TRAILER_HITBOX;
+                ctx.lineWidth = 2;
+                ctx.setLineDash([5, 5]);
+                ctx.strokeRect(trailerX, trailerY, TRAILER_WIDTH, TRAILER_HEIGHT);
+                ctx.restore();
+            }
         } else {
             // Fallback к простым фигурам, если изображения не загружены
             super.draw(ctx);

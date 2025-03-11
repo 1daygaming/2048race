@@ -10,6 +10,7 @@ import numberSvg from '../assets/svg/number.svg';
 import potholeSvg from '../assets/svg/pothole.svg';
 import barrierSvg from '../assets/svg/barrier.svg';
 import brokenCarSvg from '../assets/svg/broken-car.svg';
+import backgroundPng from '../assets/background.png';
 
 import {
     CANVAS_WIDTH,
@@ -17,7 +18,8 @@ import {
     NUMBER_SIZE,
     INITIAL_GAME_SPEED,
     NUMBER_SPAWN_INTERVAL,
-    OBSTACLE_SPAWN_INTERVAL
+    OBSTACLE_SPAWN_INTERVAL,
+    SPEED_MULTIPLIER_PER_DOUBLE
 } from '../utils/constants';
 
 export class Game {
@@ -28,6 +30,7 @@ export class Game {
     private lastTime: number;
     private gameSpeed: number;
     private score: number;
+    private maxNumber: number; // Максимальное достигнутое число
     private numberSpawnTime: number;
     private obstacleSpawnTime: number;
     private isGameOver: boolean;
@@ -47,6 +50,7 @@ export class Game {
         this.lastTime = 0;
         this.gameSpeed = INITIAL_GAME_SPEED;
         this.score = 0;
+        this.maxNumber = 2; // Начальное максимальное число
         this.numberSpawnTime = 0;
         this.obstacleSpawnTime = 0;
         this.isGameOver = false;
@@ -61,6 +65,7 @@ export class Game {
         AssetLoader.loadImage('pothole', potholeSvg);
         AssetLoader.loadImage('barrier', barrierSvg);
         AssetLoader.loadImage('broken-car', brokenCarSvg);
+        AssetLoader.loadImage('background', backgroundPng);
     }
 
     public async start(): Promise<void> {
@@ -68,7 +73,8 @@ export class Game {
         await AssetLoader.waitForLoad();
         
         this.isGameOver = false;
-        this.score = 0;
+        this.score = 2;
+        this.maxNumber = 2;
         this.gameSpeed = INITIAL_GAME_SPEED;
         this.gameObjects = [];
         this.player = new Player();
@@ -87,12 +93,24 @@ export class Game {
         requestAnimationFrame(this.gameLoop);
     }
 
+    private getCurrentGameSpeed(): number {
+        const playerNumber = this.player.getCurrentNumber();
+        // Вычисляем, сколько раз число удвоилось от начального значения 2
+        const doublings = Math.log2(playerNumber) - 1;
+        // Увеличиваем скорость на 15% за каждое удвоение
+        return INITIAL_GAME_SPEED * Math.pow(SPEED_MULTIPLIER_PER_DOUBLE, doublings);
+    }
+
     private update(deltaTime: number): void {
         // Update player
         this.player.update(deltaTime);
 
+        // Обновляем текущую скорость игры
+        this.gameSpeed = this.getCurrentGameSpeed();
+
         // Update game objects
         this.gameObjects = this.gameObjects.filter(obj => {
+            obj.setSpeed(this.gameSpeed); // Обновляем скорость каждого объекта
             obj.update(deltaTime);
             return obj.getPosition().y <= CANVAS_HEIGHT;
         });
@@ -134,7 +152,7 @@ export class Game {
         this.gameObjects.forEach(obj => obj.draw(this.ctx));
         this.player.draw(this.ctx);
 
-        // Рисуем неоновый счёт
+        // Рисуем неоновый счёт и максимальное число
         this.ctx.font = 'bold 24px "Press Start 2P", monospace';
         this.ctx.textAlign = 'left';
         
@@ -142,7 +160,7 @@ export class Game {
         this.ctx.shadowColor = '#00ff00';
         this.ctx.shadowBlur = 10;
         this.ctx.fillStyle = '#fff';
-        this.ctx.fillText(`SCORE: ${this.score}`, 10, 30);
+        this.ctx.fillText(`MAX: ${this.score}`, 10, 30);
         
         // Сбрасываем эффекты тени
         this.ctx.shadowBlur = 0;
@@ -168,8 +186,14 @@ export class Game {
 
         if (playerNumber === collidedNumber) {
             // Correct number collected - double the player's number
-            this.player.updateNumber(playerNumber * 2);
-            this.score += collidedNumber;
+            const newNumber = playerNumber * 2;
+            this.player.updateNumber(newNumber);
+            
+            // Обновляем максимальное число и счет
+            if (newNumber > this.maxNumber) {
+                this.maxNumber = newNumber;
+                this.score = this.maxNumber;
+            }
         } else {
             // Wrong number collected - divide by 4
             this.player.updateNumber(Math.max(2, Math.floor(playerNumber / 4)));

@@ -1,3 +1,5 @@
+import { DEBUG_MODE, DEBUG_COLORS } from '../utils/constants';
+
 export abstract class GameObject {
     protected x: number;
     protected y: number;
@@ -16,8 +18,30 @@ export abstract class GameObject {
     public abstract update(deltaTime: number): void;
 
     public draw(ctx: CanvasRenderingContext2D): void {
+        // Рисуем основной объект
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
+
+        // Отрисовка хитбокса в отладочном режиме
+        if (DEBUG_MODE) {
+            this.drawHitbox(ctx);
+        }
+    }
+
+    protected drawHitbox(ctx: CanvasRenderingContext2D, color: string = DEBUG_COLORS.HITBOX): void {
+        // Сохраняем текущие настройки контекста
+        ctx.save();
+        
+        // Настраиваем стиль для хитбокса
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
+        ctx.setLineDash([5, 5]); // Пунктирная линия
+        
+        // Рисуем прямоугольник хитбокса
+        ctx.strokeRect(this.x, this.y, this.width, this.height);
+        
+        // Восстанавливаем настройки контекста
+        ctx.restore();
     }
 
     public getPosition(): { x: number; y: number } {

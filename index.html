@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>2048 Race</title>
+    <title>Number Truck</title>
+    <link rel="stylesheet" href="src/styles.css">
     <style>
       body {
         margin: 0;
@@ -23,7 +24,37 @@
     </style>
   </head>
   <body>
-    <canvas id="gameCanvas"></canvas>
-    <script type="module" src="/src/main.ts"></script>
+    <!-- Стартовый экран -->
+    <div class="start-screen" id="startScreen">
+        <img id="startScreenBackground" alt="background">
+        <div class="title-container">
+            <img src="src/assets/svg/title.svg" alt="Number Truck" width="400">
+        </div>
+        <div class="button-container">
+            <button class="game-button" id="rulesButton">Rules</button>
+            <button class="game-button" id="startButton">Start</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно с правилами -->
+    <div class="modal" id="rulesModal">
+        <div class="modal-content">
+            <button class="close-button" id="closeRules">×</button>
+            <h2>How to Play</h2>
+            <p>1. Control your truck using LEFT and RIGHT arrow keys</p>
+            <p>2. Collect matching numbers to double your score</p>
+            <p>3. Avoid wrong numbers and obstacles</p>
+            <p>4. The bigger your number, the faster objects will fall</p>
+            <p>5. Try to get the highest number possible!</p>
+            <p>Tip: Be careful! Hitting obstacles will divide your number!</p>
+        </div>
+    </div>
+
+    <!-- Игровой контейнер -->
+    <div class="game-container">
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <script type="module" src="src/main.ts"></script>
   </body>
 </html>

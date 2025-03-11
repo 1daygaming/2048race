@@ -1,12 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="50" height="60" viewBox="0 0 50 60" xmlns="http://www.w3.org/2000/svg">
-    <!-- Основной контейнер -->
-    <rect x="5" y="5" width="40" height="40" fill="#2980b9" rx="3"/>
-    <!-- Колеса -->
-    <circle cx="15" cy="50" r="6" fill="#2c3e50"/>
-    <circle cx="35" cy="50" r="6" fill="#2c3e50"/>
-    <!-- Сцепка -->
-    <rect x="22" y="0" width="6" height="5" fill="#7f8c8d"/>
-    <!-- Текстовое поле для числа -->
-    <rect x="10" y="10" width="30" height="30" fill="#3498db" rx="2"/>
+<svg width="30" height="40" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+    <!-- Пиксельный прицеп -->
+    <g transform="scale(4)">
+        <!-- Основной корпус (5x7 пикселей) -->
+        <rect x="1" y="1" width="1" height="1" fill="#34495e"/>
+        <rect x="2" y="1" width="1" height="1" fill="#34495e"/>
+        <rect x="3" y="1" width="1" height="1" fill="#34495e"/>
+        <rect x="4" y="1" width="1" height="1" fill="#34495e"/>
+        <rect x="5" y="1" width="1" height="1" fill="#34495e"/>
+
+        <rect x="1" y="2" width="1" height="1" fill="#34495e"/>
+        <rect x="2" y="2" width="1" height="1" fill="#2c3e50"/>
+        <rect x="3" y="2" width="1" height="1" fill="#2c3e50"/>
+        <rect x="4" y="2" width="1" height="1" fill="#2c3e50"/>
+        <rect x="5" y="2" width="1" height="1" fill="#34495e"/>
+
+        <rect x="1" y="3" width="1" height="1" fill="#34495e"/>
+        <rect x="2" y="3" width="1" height="1" fill="#2c3e50"/>
+        <rect x="3" y="3" width="1" height="1" fill="#2c3e50"/>
+        <rect x="4" y="3" width="1" height="1" fill="#2c3e50"/>
+        <rect x="5" y="3" width="1" height="1" fill="#34495e"/>
+
+        <rect x="1" y="4" width="1" height="1" fill="#34495e"/>
+        <rect x="2" y="4" width="1" height="1" fill="#2c3e50"/>
+        <rect x="3" y="4" width="1" height="1" fill="#2c3e50"/>
+        <rect x="4" y="4" width="1" height="1" fill="#2c3e50"/>
+        <rect x="5" y="4" width="1" height="1" fill="#34495e"/>
+
+        <rect x="1" y="5" width="1" height="1" fill="#34495e"/>
+        <rect x="2" y="5" width="1" height="1" fill="#2c3e50"/>
+        <rect x="3" y="5" width="1" height="1" fill="#2c3e50"/>
+        <rect x="4" y="5" width="1" height="1" fill="#2c3e50"/>
+        <rect x="5" y="5" width="1" height="1" fill="#34495e"/>
+
+        <rect x="1" y="6" width="1" height="1" fill="#34495e"/>
+        <rect x="2" y="6" width="1" height="1" fill="#2c3e50"/>
+        <rect x="3" y="6" width="1" height="1" fill="#2c3e50"/>
+        <rect x="4" y="6" width="1" height="1" fill="#2c3e50"/>
+        <rect x="5" y="6" width="1" height="1" fill="#34495e"/>
+
+        <rect x="1" y="7" width="1" height="1" fill="#34495e"/>
+        <rect x="2" y="7" width="1" height="1" fill="#34495e"/>
+        <rect x="3" y="7" width="1" height="1" fill="#34495e"/>
+        <rect x="4" y="7" width="1" height="1" fill="#34495e"/>
+        <rect x="5" y="7" width="1" height="1" fill="#34495e"/>
+
+        <!-- Колеса -->
+        <rect x="0" y="2" width="1" height="1" fill="#2c3e50"/>
+        <rect x="6" y="2" width="1" height="1" fill="#2c3e50"/>
+        <rect x="0" y="6" width="1" height="1" fill="#2c3e50"/>
+        <rect x="6" y="6" width="1" height="1" fill="#2c3e50"/>
+    </g>
 </svg> 
