@@ -13,7 +13,8 @@ import {
     TRUCK_HEIGHT,
     TRAILER_WIDTH,
     TRAILER_HEIGHT,
-    TRAILER_GAP
+    TRAILER_GAP,
+    MOBILE_BOTTOM_MARGIN
 } from '../utils/constants';
 
 export class Player extends GameObject {
@@ -23,7 +24,7 @@ export class Player extends GameObject {
 
     constructor() {
         const x = (CANVAS_WIDTH - PLAYER_WIDTH) / 2;
-        const y = CANVAS_HEIGHT - PLAYER_HEIGHT - 20;
+        const y = CANVAS_HEIGHT - PLAYER_HEIGHT - MOBILE_BOTTOM_MARGIN;
         super(x, y, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_COLOR);
         
         this.speed = PLAYER_SPEED;
@@ -34,6 +35,7 @@ export class Player extends GameObject {
     }
 
     private setupControls(): void {
+        // Клавиатура
         window.addEventListener('keydown', (e: KeyboardEvent) => {
             if (e.key === 'ArrowLeft') this.moving.left = true;
             if (e.key === 'ArrowRight') this.moving.right = true;
@@ -44,22 +46,25 @@ export class Player extends GameObject {
             if (e.key === 'ArrowRight') this.moving.right = false;
         });
 
-        // Touch controls
-        let touchStartX = 0;
-        window.addEventListener('touchstart', (e: TouchEvent) => {
-            touchStartX = e.touches[0].clientX;
-        });
-
-        window.addEventListener('touchmove', (e: TouchEvent) => {
-            const touchX = e.touches[0].clientX;
-            const diff = touchX - touchStartX;
+        // Управление на мобильных устройствах
+        const handleTouch = (e: TouchEvent) => {
+            const touch = e.touches[0];
+            const screenCenterX = window.innerWidth / 2;
             
-            this.moving.left = diff < -10;
-            this.moving.right = diff > 10;
+            // Определяем положение тапа относительно центра экрана
+            this.moving.left = touch.clientX < screenCenterX;
+            this.moving.right = touch.clientX >= screenCenterX;
             
             e.preventDefault();
-        });
+        };
 
+        // Начало касания
+        window.addEventListener('touchstart', handleTouch);
+        
+        // Движение пальца (для случая если пользователь двигает палец)
+        window.addEventListener('touchmove', handleTouch);
+
+        // Конец касания
         window.addEventListener('touchend', () => {
             this.moving.left = false;
             this.moving.right = false;

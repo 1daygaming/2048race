@@ -12,7 +12,7 @@ export const DEBUG_COLORS = {
 
 // Player constants
 export const TRUCK_WIDTH = 40;
-export const TRUCK_HEIGHT = 60;
+export const TRUCK_HEIGHT = 30;
 export const TRAILER_WIDTH = 40;
 export const TRAILER_HEIGHT = 30;
 export const TRAILER_GAP = 5;
@@ -37,4 +37,6 @@ export const SPEED_MULTIPLIER_PER_DOUBLE = 1.15; // увеличение ско�
 
 // Spawn rates
 export const NUMBER_SPAWN_INTERVAL = 2000; // каждые 2 секунды
-export const OBSTACLE_SPAWN_INTERVAL = 1500; // каждые 1.5 секунды 
+export const OBSTACLE_SPAWN_INTERVAL = 1500; // каждые 1.5 секунды
+
+export const MOBILE_BOTTOM_MARGIN = 100; // Отступ снизу для мобильных устройств 

@@ -145,4 +145,15 @@ button:hover {
     0% { box-shadow: 0 0 5px #4a90e2; }
     50% { box-shadow: 0 0 20px #4a90e2; }
     100% { box-shadow: 0 0 5px #4a90e2; }
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media screen and (max-width: 768px) {
+    .game-container {
+        margin-bottom: 100px; /* Дополнительный отступ снизу */
+    }
+
+    canvas {
+        max-height: calc(100vh - 120px); /* Уменьшаем высоту канваса */
+    }
 } 
